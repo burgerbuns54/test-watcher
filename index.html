@@ -26,8 +26,8 @@
 
     // Initialize the Twitch Player
     const player = new Twitch.Player("twitch-embed", {
-      width: 640,
-      height: 360,
+      width: 50,
+      height: 50,
       channel: channel, // Dynamically set channel
       parent: ["github.io"],
       autoplay: true,
@@ -40,8 +40,7 @@
       // Generate a random volume between 15 and 100
       const randomVolume = Math.floor(Math.random() * (100 - 15 + 1)) + 15;
       
-      // Set the volume (Twitch API expects a value between 0 and 1)
-      player.setVolume(randomVolume / 100);
+         player.setVolume(randomVolume);
       player.setQuality("160p30");
     });
   </script>
