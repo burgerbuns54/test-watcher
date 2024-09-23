@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Twitch Embed</title>
+</head>
+<body>
+  <div id="twitch-embed"></div>
+
+  <!-- Twitch Embed Script -->
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  <script type="text/javascript">
+    /**
+     * Retrieves the value of a given query parameter from the URL.
+     * @param {string} param - The name of the query parameter.
+     * @returns {string|null} - The value of the query parameter or null if not found.
+     */
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Get the 'channel' query parameter or default to 'shroud' if not provided
+    const channel = getQueryParam('channel') || 's0mcs';
+
+    // Initialize the Twitch Player
+    const player = new Twitch.Player("twitch-embed", {
+      width: 640,
+      height: 360,
+      channel: channel, // Dynamically set channel
+      parent: ["github.io"],
+      autoplay: true,
+      muted: true,
+      quality: "160p30"
+    });
+
+    // Listen for the 'ready' event to set quality
+    player.addEventListener(Twitch.Player.EVENT_READY, () => {
+      player.setVolume(0);
+      player.setQuality("160p30");
+    });
+  </script>
+</body>
+</html>
